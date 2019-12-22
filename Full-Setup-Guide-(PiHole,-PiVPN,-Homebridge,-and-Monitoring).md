@@ -30,6 +30,7 @@ interface wlan0
 ```  
   
 5. Start up, ssh: `ssh pi@192.168.0.200`  
+> If that doesn't work, try `ssh pi@raspberrypi.local`  
 6. `passwd`, then reboot  
 7. change hostname using `sudo raspi-config` then reboot  
 8. `sudo apt-get update -y && sudo apt-get upgrade -y`  
