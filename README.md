@@ -1,5 +1,45 @@
 Learning resources for Raspberry Pi, sample projects, helpful references
 
+### Headless Setup  
+
+1. Fresh install of Raspbian Lite on your MicroSD card, which should create 2 new partitions (rootfs and boot)  
+2. Open the boot partition, and created an empty file simply named "ssh" (no extension)  
+3. Created new file `wpa_supplicant.conf` in boot partition with the contents:  
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=CA
+
+network={
+	ssid="SSID"
+	psk="PASSWORD"
+	key_mgmt=WPA-PSK
+}
+```  
+Replace the SSID with your WiFi name, and PASSWORD with the password  
+4. Set static IPs  
+Open the "rootfs" partition as root. Edit /etc/dhcpcd.conf (append to end of file)  
+> Make sure the indentations are done with tabs?  
+```
+interface eth0
+    static ip_address=192.168.0.200/24
+    static routers=192.168.0.1
+    static domain_name_servers=192.168.0.1
+
+interface wlan0
+    static ip_address=192.168.0.200/24
+    static routers=192.168.0.1
+    static domain_name_servers=192.168.0.1
+```  
+
+5. Start up, ssh: `ssh pi@192.168.0.200`  
+> If that doesn't work, try `ssh pi@raspberrypi.local` (the default hostname)  
+6. Run `passwd`, change the default password  
+7. Change hostname using `sudo raspi-config`, enable Camera and 1-Wire interfaces if you want to use them later, then reboot  
+8. SSH back in, and run `sudo apt-get update -y && sudo apt-get upgrade -y`  
+> Like in Step 5, if you can't connect to the right ip, try `ssh pi@<newhostname>.local` (the new hostname)  
+
+
 ### Enable Automatic Updates  
 ```  
 sudo apt-get install unattended-upgrades  
