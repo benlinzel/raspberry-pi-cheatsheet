@@ -31,10 +31,10 @@ interface wlan0
   
 5. Start up, ssh: `ssh pi@192.168.0.200`  
 > If that doesn't work, try `ssh pi@raspberrypi.local` (the default hostname)  
-6. `passwd`, then reboot
-> Like in Step 5, if you can't connect to the right ip, try `ssh pi@<newhostname>.local` (the new hostname)  
+6. `passwd`, then reboot  
 7. change hostname using `sudo raspi-config` then reboot  
-8. `sudo apt-get update -y && sudo apt-get upgrade -y`  
+8. SSH back in, and run `sudo apt-get update -y && sudo apt-get upgrade -y`  
+> Like in Step 5, if you can't connect to the right ip, try `ssh pi@<newhostname>.local` (the new hostname)  
 9. `sudo apt-get install git -y`  
 
 Install PiHole  
