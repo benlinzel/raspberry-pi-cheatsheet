@@ -75,6 +75,7 @@ Local VPN server to connect to local internet from anywhere
 ```
 curl -L https://install.pivpn.io | bash
 ```
+> Use the Wireguard implementation, is't much faster!  
 
 #### Having issues?  
 If you're having trouble accessing local devices over vpn, try running
